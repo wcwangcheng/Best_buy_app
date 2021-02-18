@@ -10,7 +10,10 @@ Page({
     //获取分类左侧菜单数据
     leftMenuList: [],
     //右侧的商品数据
-    rightContent: []
+    rightContent: [],
+    //被点击的左侧菜单
+    currentIndex:0,
+    scrollTop:0
 
   },
   //接口返回数据
@@ -39,6 +42,19 @@ Page({
           rightContent
         })
       })
+  },
+  handleItemTap(e){
+    // console.log(e);
+    // 获取被点击的标题身上的索引，给data中的currentIndex赋值就可以了,根据不同索引渲染右侧商品
+    const {index}=e.currentTarget.dataset;
+    let rightContent = this.Cates[index].children;
+     this.setData({
+      currentIndex:index,
+      rightContent,
+      //重新设置右侧内容的scroll-view标签与顶部的距离
+      scrollTop:0
+    })
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
