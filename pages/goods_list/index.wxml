@@ -1,2 +1,33 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<SearchInput></SearchInput>
+<!-- 监听自定义事件 -->
+<Tabs tabs="{{tabs}}" bindtabsItemChange="handleTabsItemChange">
+    <block wx:if="{{tabs[0].isActive}}">
+      <view class="first_tab">
+          <navigator class="goods_item"
+          wx:for="{{goodsList}}"
+          wx:key="goods_id"
+          url="/pages/goods_detail/index?goods_id={{item.goods_id}}"
+          >
+              <!-- 左侧图片容器 -->
+              <view class="goods_img_warp">
+                  <image mode="widthFix" src="{{item.goods_small_logo?item.goods_small_logo:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsecretkeycrm.digifilm.com.cn%2Fupload%2F20180530%2Fe676f667c4cdfc7e074898adab2622f2.jpg&refer=http%3A%2F%2Fsecretkeycrm.digifilm.com.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1616568133&t=a150f4dbb8faf3ed4ee5bcc9eda34757'}}"></image>
+              </view>
+              <!-- 右侧商品容器 -->
+              <view class="goods_info_warp">
+               <view class="goods_name">
+                 {{item.goods_name}}
+              </view>
+              <view class="goods_price">{{item.goods_price}}</view>
+              </view>
+          </navigator>
+         
+        
+      </view>
+    </block>
+     <block wx:elif="{{tabs[1].isActive}}">
+
+     </block>
+      <block wx:elif="{{tabs[2].isActive}}">
+
+      </block>
+</Tabs>
